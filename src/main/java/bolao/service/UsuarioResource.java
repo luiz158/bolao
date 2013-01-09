@@ -36,7 +36,7 @@ public class UsuarioResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String adicionaUsuario(Usuario usuario){
-		usuario.setCodigo(null);
+		usuario.setUsuario(null);
 		UsuarioController usuarioController = new UsuarioController();
 		usuarioController.adcionar(usuario);
 		return "Adicionado";

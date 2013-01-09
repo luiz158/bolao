@@ -23,7 +23,8 @@ public class Usuario implements Serializable, BoleiroListener{
 	private static final long serialVersionUID = 3026097908340994246L;
 	@Id
 	@GeneratedValue
-	private Integer codigo;
+	@Column(name="cod_usuario")
+	private Integer usuario;
 	private String nome;
 	private String email;
 	
@@ -42,12 +43,12 @@ public class Usuario implements Serializable, BoleiroListener{
 	@Column(name = "permissao", length=50)
 	private Set<String> permissao = new HashSet<String>();
 
-	public Integer getCodigo() {
-		return codigo;
+	public Integer getUsuario() {
+		return usuario;
 	}
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setUsuario(Integer codigo) {
+		this.usuario = codigo;
 	}
 
 	public String getNome() {
@@ -107,7 +108,7 @@ public class Usuario implements Serializable, BoleiroListener{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (ativo ? 1231 : 1237);
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -130,10 +131,10 @@ public class Usuario implements Serializable, BoleiroListener{
 		Usuario other = (Usuario) obj;
 		if (ativo != other.ativo)
 			return false;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (usuario == null) {
+			if (other.usuario != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!usuario.equals(other.usuario))
 			return false;
 		if (email == null) {
 			if (other.email != null)

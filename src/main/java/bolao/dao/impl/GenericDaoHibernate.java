@@ -1,9 +1,11 @@
-package bolao.dao;
+package bolao.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
+
+import bolao.dao.GenericDao;
 
 public abstract class GenericDaoHibernate<T, ID extends Serializable> implements GenericDao<T, ID>{
 
@@ -44,4 +46,9 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
    public void atualizar(T entity) {
 	   this.getSession().update(entity);
 	}
+
+   @SuppressWarnings("unchecked")
+   public T carregar(ID codigo) {
+	   return (T) this.getSession().get(this.entityClass, codigo);
+   }
 }

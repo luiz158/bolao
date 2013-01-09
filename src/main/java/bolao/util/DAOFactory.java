@@ -1,10 +1,6 @@
 package bolao.util;
 
-import bolao.dao.GenericDao;
-import bolao.dao.GenericDaoHibernate;
-import bolao.dao.UsuarioDao;
-import bolao.dao.UsuarioDaoHibernate;
-import bolao.model.Usuario;
+import bolao.dao.impl.UsuarioDaoHibernate;
 
 public class DAOFactory {
 	public static UsuarioDaoHibernate criarUsuarioDAO(){
