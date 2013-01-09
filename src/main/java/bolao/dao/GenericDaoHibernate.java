@@ -5,16 +5,15 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-public abstract class AbstractFacadeDao<T, ID extends Serializable> implements GenericDao<T, Serializable>{
+public abstract class GenericDaoHibernate<T, ID extends Serializable> implements GenericDao<T, ID>{
 
    private Session session;
    private Class<T> entityClass;
    
-   public AbstractFacadeDao(Class<T> entityClass) {
+   public GenericDaoHibernate(Class<T> entityClass) {
        this.entityClass = entityClass;
    }
    
-   @SuppressWarnings("unchecked")
    public void setSession(Session session) {
        this.session = session;
    }
@@ -29,18 +28,20 @@ public abstract class AbstractFacadeDao<T, ID extends Serializable> implements G
        return this.entityClass;
    }
    
-   @SuppressWarnings("unchecked")
    public void salvar(T entity) {
-    	this.getSession().saveOrUpdate(entity);
+    	this.getSession().save(entity);
     }
 
-   @SuppressWarnings("unchecked")
    public void excluir(T entity) {
         this.getSession().delete(entity);
     }
    
    @SuppressWarnings("unchecked")
-   public List<T> pesquisarTodos() {
+   public List<T> listar() {
 	   return this.getSession().createCriteria(this.getEntityClass()).list();
-	   }
+   }
+
+   public void atualizar(T entity) {
+	   this.getSession().update(entity);
+	}
 }

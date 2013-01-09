@@ -4,11 +4,29 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  
-  	<resource-ref>
-		<description>DataSource BolaoDB</description>
-		<res-ref-name>jdbc/BolaoDB</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
+  	
+  	<filter>
+  		<filter-name>conexaoFilter</filter-name>
+  		<filter-class>bolao.util.filter.ConexaoHibernateFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>conexaoFilter</filter-name>
+  		<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+  	
+  	<servlet>
+  		<servlet-name>Jersey REST Service</servlet-name>
+  		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+  		<init-param>
+  			<param-name>com.sun.jersey.config.property.packages</param-name>
+  			<param-value>bolao.service</param-value>
+  		</init-param>
+  		<load-on-startup>1</load-on-startup>
+  	</servlet>
+  	
+  	<servlet-mapping>
+  		<servlet-name>Jersey REST Service</servlet-name>
+  		<url-pattern>/*</url-pattern>
+  	</servlet-mapping>
+  	
 </web-app>

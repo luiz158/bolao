@@ -12,14 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.NaturalId;
 
 @Entity
+@XmlRootElement
 public class Usuario implements Serializable, BoleiroListener{
 
-	private static final long serialVersionUID = -3834218888832302397L;
-	
+	private static final long serialVersionUID = 3026097908340994246L;
 	@Id
 	@GeneratedValue
 	private Integer codigo;
@@ -172,5 +173,8 @@ public class Usuario implements Serializable, BoleiroListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	public Long getPontuacaoTotal() {
+		return pontuacaoTotal;
+	}
 }

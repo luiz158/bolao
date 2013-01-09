@@ -2,12 +2,12 @@ package bolao.controller;
 
 import java.util.List;
 
-import bolao.dao.UsuarioDAO;
+import bolao.dao.UsuarioDao;
 import bolao.model.Usuario;
 import bolao.util.DAOFactory;
 
 public class UsuarioController {
-private UsuarioDAO usuarioDAO;
+private UsuarioDao usuarioDAO;
 	
 	public UsuarioController(){
 		this.usuarioDAO = DAOFactory.criarUsuarioDAO();
@@ -21,14 +21,13 @@ private UsuarioDAO usuarioDAO;
 		return this.usuarioDAO.buscarPorLogin(login);
 	}
 	
-	public void salvar(Usuario usuario){
-		Integer codigo = usuario.getCodigo();
-		if(codigo == null || codigo == 0){
-			usuario.getPermissao().add("ROLE_USUARIO");
-			this.usuarioDAO.salvar(usuario);
-		}else {
-			this.usuarioDAO.atualizar(usuario);
-		}
+	public void adcionar(Usuario usuario){
+		usuario.getPermissao().add("ROLE_USUARIO");
+		this.usuarioDAO.salvar(usuario);
+	}
+	
+	public void atualizar(Usuario usuario){
+		this.usuarioDAO.atualizar(usuario);
 	}
 	
 	public void excluir(Usuario usuario){
