@@ -30,7 +30,7 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
        return this.entityClass;
    }
    
-   public void salvar(T entity) {
+   public void adicionar(T entity) {
     	this.getSession().save(entity);
     }
 

@@ -7,7 +7,8 @@ import bolao.model.Usuario;
 import bolao.util.DAOFactory;
 
 public class UsuarioController {
-private UsuarioDao usuarioDAO;
+	
+	private UsuarioDao usuarioDAO;
 	
 	public UsuarioController(){
 		this.usuarioDAO = DAOFactory.criarUsuarioDAO();
@@ -23,7 +24,7 @@ private UsuarioDao usuarioDAO;
 	
 	public void adcionar(Usuario usuario){
 		usuario.getPermissao().add("ROLE_USUARIO");
-		this.usuarioDAO.salvar(usuario);
+		this.usuarioDAO.adicionar(usuario);
 	}
 	
 	public void atualizar(Usuario usuario){

@@ -2,15 +2,16 @@ package bolao.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -27,15 +28,16 @@ public class Bolao implements Serializable{
 	private String nome;
 	private String descricao;
 	
-	@ManyToOne
-	@JoinColumn(name="cod_usuario")
-	private Usuario presidente;
+	@ManyToMany
+	@JoinTable(name="bolao_usuario", joinColumns={@JoinColumn(name="cod_bolao")},
+			inverseJoinColumns = {@JoinColumn(name= "cod_usuario")})
+	private Set<Usuario> apostadores = new HashSet<Usuario>();
+	
+	//Guarda a chave primaria do Usuario presidente do Bolao
+	private Integer presidente;
 	
 	@Column(name="data_criacao")
 	private Date dataCriacao;
-	
-	@OneToMany(mappedBy="usuario")
-	private List<Usuario> apostadores;
 
 	public Integer getBolao() {
 		return bolao;
@@ -61,11 +63,11 @@ public class Bolao implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Usuario getPresidente() {
+	public Integer getPresidente() {
 		return presidente;
 	}
 
-	public void setPresidente(Usuario presidente) {
+	public void setPresidente(Integer presidente) {
 		this.presidente = presidente;
 	}
 
@@ -77,11 +79,11 @@ public class Bolao implements Serializable{
 		this.dataCriacao = dataCriacao;
 	}
 
-	public List<Usuario> getApostadores() {
+	public Set<Usuario> getApostadores() {
 		return apostadores;
 	}
 
-	public void setApostadores(List<Usuario> apostadores) {
+	public void setApostadores(Set<Usuario> apostadores) {
 		this.apostadores = apostadores;
 	}
 

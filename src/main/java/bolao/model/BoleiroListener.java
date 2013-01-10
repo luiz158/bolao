@@ -1,5 +1,5 @@
 package bolao.model;
 
 public interface BoleiroListener {
-	public void atualizarPontuacao();
+	public void notificacao();
 }

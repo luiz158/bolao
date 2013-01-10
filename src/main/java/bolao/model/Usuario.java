@@ -18,7 +18,7 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @XmlRootElement
-public class Usuario implements Serializable, BoleiroListener{
+public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 3026097908340994246L;
 	@Id
@@ -167,12 +167,6 @@ public class Usuario implements Serializable, BoleiroListener{
 		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
-	}
-
-	@Override
-	public void atualizarPontuacao() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public Long getPontuacaoTotal() {
