@@ -1,7 +1,7 @@
 package bolao.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -32,6 +33,10 @@ public class Bolao implements Serializable{
 	@JoinTable(name="bolao_usuario", joinColumns={@JoinColumn(name="cod_bolao")},
 			inverseJoinColumns = {@JoinColumn(name= "cod_usuario")})
 	private Set<Usuario> apostadores = new HashSet<Usuario>();
+	
+	@ManyToOne
+	@JoinColumn(name="cod_campeonato")
+	private Campeonato campeonato;
 	
 	//Guarda a chave primaria do Usuario presidente do Bolao
 	private Integer presidente;

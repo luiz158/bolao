@@ -3,6 +3,7 @@ package bolao.service;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -60,5 +61,16 @@ public class UsuarioResource {
 		usuarioController.atualizar(usuarioAtual);
 		
 		return "Usuario atualizado";
+	}
+	
+	@DELETE
+	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String removeUsuario(@PathParam("id") int id){
+		UsuarioController usuarioController = new UsuarioController();
+		Usuario usuario = usuarioController.carregar(id);
+		usuarioController.excluir(usuario);
+		return "Usuario " + usuario.getNome() + "removido!";
 	}
 }
