@@ -13,7 +13,7 @@
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<property name="connection.url">jdbc:postgresql://localhost:5432/bolao</property>
 		<property name="connection.username">postgres</property>
-		<property name="connection.password">sedec</property>
+		<property name="connection.password">oex9536</property>
 		
 		<!--
 		<property name="connection.datasource">java:/comp/env/jdbc/BolaoDB</property>
@@ -38,5 +38,9 @@
 		<!-- Mapeando classes -->
 		<mapping class="bolao.model.Usuario" />
 		<mapping class="bolao.model.Bolao" />
+		<mapping class="bolao.model.Aposta" />
+		<mapping class="bolao.model.Campeonato" />
+		<mapping class="bolao.model.Clube" />
+		<mapping class="bolao.model.Jogo" />		
 	</session-factory>
 </hibernate-configuration>

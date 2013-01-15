@@ -2,6 +2,7 @@ package bolao.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,14 +12,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.sun.xml.bind.CycleRecoverable;
+
 @Entity
 @XmlRootElement
-public class Usuario implements Serializable{
+@Table(name="usuario")
+public class Usuario implements Serializable, CycleRecoverable{
 
 	private static final long serialVersionUID = 3026097908340994246L;
 	@Id
@@ -33,8 +39,6 @@ public class Usuario implements Serializable{
 	private String senha;
 	private boolean ativo;
 	
-	private Long pontuacaoTotal;
-	
 	@ElementCollection(targetClass = String.class)
 	@JoinTable(
 			name = "Usuario_permissao",
@@ -42,13 +46,16 @@ public class Usuario implements Serializable{
 			joinColumns = @JoinColumn(name = "usuario"))
 	@Column(name = "permissao", length=50)
 	private Set<String> permissao = new HashSet<String>();
+	
+	@ManyToMany(mappedBy="apostadores")
+	private List<Bolao> boloes;
 
 	public Integer getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Integer codigo) {
-		this.usuario = codigo;
+	public void setUsuario(Integer usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getNome() {
@@ -98,6 +105,14 @@ public class Usuario implements Serializable{
 	public void setPermissao(Set<String> permissao) {
 		this.permissao = permissao;
 	}
+	
+	public List<Bolao> getBoloes() {
+		return boloes;
+	}
+
+	public void setBoloes(List<Bolao> boloes) {
+		this.boloes = boloes;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -108,15 +123,14 @@ public class Usuario implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (ativo ? 1231 : 1237);
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		result = prime * result + ((boloes == null) ? 0 : boloes.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result
 				+ ((permissao == null) ? 0 : permissao.hashCode());
-		result = prime * result
-				+ ((pontuacaoTotal == null) ? 0 : pontuacaoTotal.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -131,10 +145,10 @@ public class Usuario implements Serializable{
 		Usuario other = (Usuario) obj;
 		if (ativo != other.ativo)
 			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
+		if (boloes == null) {
+			if (other.boloes != null)
 				return false;
-		} else if (!usuario.equals(other.usuario))
+		} else if (!boloes.equals(other.boloes))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -156,20 +170,23 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!permissao.equals(other.permissao))
 			return false;
-		if (pontuacaoTotal == null) {
-			if (other.pontuacaoTotal != null)
-				return false;
-		} else if (!pontuacaoTotal.equals(other.pontuacaoTotal))
-			return false;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
+			return false;
 		return true;
 	}
 
-	public Long getPontuacaoTotal() {
-		return pontuacaoTotal;
+	@Override
+	public Object onCycleDetected(Context arg0) {
+		Usuario u = new Usuario();
+		u.setUsuario(this.usuario);
+		return u;
 	}
 }

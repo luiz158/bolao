@@ -13,11 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.sun.xml.bind.CycleRecoverable;
 
 @Entity
 @XmlRootElement
-public class Bolao implements Serializable{
+@Table(name="bolao")
+public class Bolao implements Serializable, CycleRecoverable{
 	
 	private static final long serialVersionUID = 7550853307233198965L;
 
@@ -67,6 +71,22 @@ public class Bolao implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public Set<Usuario> getApostadores() {
+		return apostadores;
+	}
+
+	public void setApostadores(Set<Usuario> apostadores) {
+		this.apostadores = apostadores;
+	}
+
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
+	}
 
 	public Integer getPresidente() {
 		return presidente;
@@ -84,12 +104,8 @@ public class Bolao implements Serializable{
 		this.dataCriacao = dataCriacao;
 	}
 
-	public Set<Usuario> getApostadores() {
-		return apostadores;
-	}
-
-	public void setApostadores(Set<Usuario> apostadores) {
-		this.apostadores = apostadores;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -99,6 +115,8 @@ public class Bolao implements Serializable{
 		result = prime * result
 				+ ((apostadores == null) ? 0 : apostadores.hashCode());
 		result = prime * result + ((bolao == null) ? 0 : bolao.hashCode());
+		result = prime * result
+				+ ((campeonato == null) ? 0 : campeonato.hashCode());
 		result = prime * result
 				+ ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
 		result = prime * result
@@ -128,6 +146,11 @@ public class Bolao implements Serializable{
 				return false;
 		} else if (!bolao.equals(other.bolao))
 			return false;
+		if (campeonato == null) {
+			if (other.campeonato != null)
+				return false;
+		} else if (!campeonato.equals(other.campeonato))
+			return false;
 		if (dataCriacao == null) {
 			if (other.dataCriacao != null)
 				return false;
@@ -149,6 +172,13 @@ public class Bolao implements Serializable{
 		} else if (!presidente.equals(other.presidente))
 			return false;
 		return true;
+	}
+	
+	//Para resolver problema de referencia ciclica
+	public Object onCycleDetected(Context arg0) {
+		Bolao b = new Bolao();
+		b.setBolao(this.bolao);
+		return b;
 	}
 	
 }
