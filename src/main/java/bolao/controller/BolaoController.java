@@ -14,16 +14,16 @@ public class BolaoController{
 		this.bolaoDao = DAOFactory.criarBolaoDAO();
 	}
 
-	public void adicionar(Bolao entity) {
-		this.bolaoDao.adicionar(entity);
+	public void adicionar(Bolao bolao) {
+		this.bolaoDao.adicionar(bolao);
 	}
 
-	public void atualizar(Bolao entity) {
-		this.bolaoDao.atualizar(entity);
+	public void atualizar(Bolao bolao) {
+		this.bolaoDao.atualizar(bolao);
 	}
 
-	public void excluir(Bolao entity) {
-		this.bolaoDao.excluir(entity);		
+	public void excluir(Bolao bolao) {
+		this.bolaoDao.excluir(bolao);		
 	}
 
 	public List<Bolao> listar() {

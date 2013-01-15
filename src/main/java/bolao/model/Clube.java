@@ -21,6 +21,7 @@ public class Clube implements Serializable{
 	@Column(name="cod_clube")
 	private Integer clube;
 	
+	@Column(nullable = false)
 	private String nome;
 	private String escudo;
 	

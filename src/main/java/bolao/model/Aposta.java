@@ -12,6 +12,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @XmlRootElement
 @Table(name="aposta")
@@ -32,7 +35,8 @@ public class Aposta implements Serializable{
 	private Integer placarVisitante;
 	
 	@ManyToOne
-	@JoinColumn(name="cod_usuario")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JoinColumn(name="cod_usuario", nullable = false)
 	private Usuario usuario;
 	
 	@ManyToOne
