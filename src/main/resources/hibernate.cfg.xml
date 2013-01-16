@@ -8,12 +8,12 @@
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<!-- 
 		<property name="connection.datasource">java:/comp/env/jdbc/BolaoDB</property>
-		 -->
+		--> 
 		 
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<property name="connection.url">jdbc:postgresql://localhost:5432/bolao</property>
 		<property name="connection.username">postgres</property>
-		<property name="connection.password">sedec</property>
+		<property name="connection.password">oex9536</property>
 		
 		<!--
 		<property name="connection.datasource">java:/comp/env/jdbc/BolaoDB</property>

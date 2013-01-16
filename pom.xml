@@ -7,6 +7,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>bolaoShow Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <properties>
+		<org.springframework.version>3.2.0.RELEASE</org.springframework.version>
+  </properties>
+  
   <dependencies>
     
     <dependency>
@@ -109,13 +114,65 @@
 		<version>1.16</version>
 	</dependency>
 
-	<!-- 
+	<!-- HIBERNATE VALIDATOR -->
 	<dependency>
-    	<groupId>com.sun.jersey.contribs</groupId>
-    	<artifactId>jersey-apache-client</artifactId>
-    	<version>1.16</version>
-	</dependency> -->
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.3.1.Final</version>
+	</dependency>
 	
+	<!-- SPRING -->
+    <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		
   </dependencies>
   <build>
     <finalName>bolaoShow</finalName>

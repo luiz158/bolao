@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -21,8 +22,10 @@ public class Clube implements Serializable{
 	@Column(name="cod_clube")
 	private Integer clube;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique= true)
+	@NotNull(message="O nome do clube deve ser preenchido.")
 	private String nome;
+	
 	private String escudo;
 	
 	public Integer getClube() {

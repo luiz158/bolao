@@ -2,10 +2,10 @@ package bolao.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.metamodel.MetadataSources;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+@SuppressWarnings("deprecation")
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 	private static ServiceRegistry serviceRegistry;

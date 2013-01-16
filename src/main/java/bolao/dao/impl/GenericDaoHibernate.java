@@ -12,7 +12,7 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
    private Session session;
    private Class<T> entityClass;
    
-   public GenericDaoHibernate(Class<T> entityClass) {
+   public GenericDaoHibernate(Class<T> entityClass){
        this.entityClass = entityClass;
    }
    
@@ -31,8 +31,8 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
    }
    
    public void adicionar(T entity) {
-    	this.getSession().save(entity);
-    }
+	   this.getSession().save(entity);
+   }
 
    public void excluir(T entity) {
         this.getSession().delete(entity);

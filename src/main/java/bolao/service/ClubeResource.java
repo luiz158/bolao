@@ -28,8 +28,8 @@ public class ClubeResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String adicionarClube(Clube clube){
 		ClubeController clubeController = new ClubeController();
-		clubeController.adicionar(clube);
-		return "Clube Adicionado";
+		String msg = clubeController.adicionar(clube);
+		return msg;
 	}
 	
 	@GET
