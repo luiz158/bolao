@@ -2,6 +2,8 @@ package bolao.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletException;
+
 import org.hibernate.HibernateException;
 
 import bolao.dao.ClubeDao;
@@ -23,7 +25,7 @@ public class ClubeController {
 			try{
 				this.clubeDao.adicionar(clube);
 				return "Sucesso";
-			}catch(HibernateException e){
+			}catch(Exception e){
 				System.out.println("ERROR: " + e.getMessage());
 			}
 		}

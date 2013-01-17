@@ -15,7 +15,7 @@ public class BolaoController{
 	}
 
 	public void adicionar(Bolao bolao) {
-		this.bolaoDao.adicionar(bolao);
+		//this.bolaoDao.adicionar(bolao);
 	}
 
 	public void atualizar(Bolao bolao) {

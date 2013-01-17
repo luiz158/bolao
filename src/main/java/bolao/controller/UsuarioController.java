@@ -24,7 +24,7 @@ public class UsuarioController {
 	
 	public void adcionar(Usuario usuario){
 		usuario.getPermissao().add("ROLE_USUARIO");
-		this.usuarioDAO.adicionar(usuario);
+		//this.usuarioDAO.adicionar(usuario);
 	}
 	
 	public void atualizar(Usuario usuario){

@@ -32,7 +32,6 @@ public class ConexaoHibernateFilter implements Filter{
 			this.sf.getCurrentSession().close();
 		}catch (Throwable ex){
 			try{
-				System.out.println("OPAAAAAAAAAAAAAAAAAAAA");
 				if(this.sf.getCurrentSession().getTransaction().isActive()){
 					this.sf.getCurrentSession().getTransaction().rollback();
 				}
