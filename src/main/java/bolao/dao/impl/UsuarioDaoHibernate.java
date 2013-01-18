@@ -11,6 +11,7 @@ public class UsuarioDaoHibernate extends GenericDaoHibernate<Usuario, Integer> i
 		super(Usuario.class);
 	}
 
+	/*
 	@Override
 	public void atualizar(Usuario usuario) {
 		if(usuario.getPermissao() == null || usuario.getPermissao().size() == 0){
@@ -19,8 +20,8 @@ public class UsuarioDaoHibernate extends GenericDaoHibernate<Usuario, Integer> i
 			super.getSession().evict(usuarioPermissao);
 		}
 		super.getSession().update(usuario);
-	}
-
+	}*/
+	
 	@Override
 	public Usuario buscarPorLogin(String login) {
 		String hql = "select u from Usuario u where u.login = :login";

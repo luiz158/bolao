@@ -12,11 +12,11 @@ public class Teste {
 		
 		Clube a = new Clube();
 		
-		a.setNome("Palmeiras");
+		a.setNome("Fluminense");
 		
 		Clube b = new Clube();
 		
-		b.setNome("Cruzeiro");
+		b.setNome("Barcelona");
 		
 		ClubeController cc= new ClubeController();
 		

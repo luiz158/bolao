@@ -27,24 +27,51 @@ public class ClubeController {
 				return "Sucesso";
 			}catch(Exception e){
 				System.out.println("ERROR: " + e.getMessage());
+				return "Erro";
 			}
 		}
 		return msg;
 	}
 
 	public void atualizar(Clube clube) {
-		this.clubeDao.atualizar(clube);
+		try{
+			this.clubeDao.atualizar(clube);
+		}catch(Exception e){
+			System.out.println("ERROR: " + e.getMessage());
+		}
 	}
 
-	public void excluir(Clube clube) {
-		this.clubeDao.excluir(clube);		
+	public String excluir(Clube clube) {
+		try{			
+			if(clube.getClube() != null){
+				this.clubeDao.excluir(clube);
+			}else{
+				return "Erro";
+			}
+		}catch(Exception e){
+			System.out.println("ERROR: " + e.getMessage());
+			return "Erro";
+		}
+		return "Sucesso";
 	}
 
 	public List<Clube> listar() {
-		return this.clubeDao.listar();
+		List<Clube> clubes = null;
+		try{
+			clubes = this.clubeDao.listar();
+		}catch(Exception e){
+			System.out.println("ERROR: " + e.getMessage());
+		}
+		return clubes;
 	}
 
 	public Clube carregar(Integer codigo) {
-		return this.clubeDao.carregar(codigo);
+		Clube clube = null;
+		try{
+			clube = this.clubeDao.carregar(codigo);
+		}catch(Exception e){
+			System.out.println("ERROR: " + e.getMessage());
+		}
+		return clube;
 	}
 }
