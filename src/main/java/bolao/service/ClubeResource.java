@@ -30,8 +30,7 @@ public class ClubeResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String adicionarClube(Clube clube){
 		ClubeController clubeController = new ClubeController();
-		String msg = clubeController.adicionar(clube);
-		return msg;
+		return clubeController.adicionar(clube);
 	}
 	
 	@GET
@@ -47,8 +46,7 @@ public class ClubeResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String excluirClube(Clube clube){
 		ClubeController clubeController = new ClubeController();
-		String msg = clubeController.excluir(clube);
-		return msg;
+		return clubeController.excluir(clube);
 	}
 	
 	@PUT

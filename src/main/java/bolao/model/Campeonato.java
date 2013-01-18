@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="campeonato")
 public class Campeonato implements Serializable{
 	
-	private static final long serialVersionUID = 7841428922800516409L;
+	private static final long serialVersionUID = -3526070421021388499L;
 
 	@Id
 	@GeneratedValue
@@ -29,12 +31,15 @@ public class Campeonato implements Serializable{
 	@NotNull(message = "O nome do campeonato deve ser preenhido")
 	private String nome;
 	
-	
-	private Integer ano;
+	@Column(nullable = false)
+	@NotNull (message = "O ano do campeonato precisa ser informado.")
+	@DecimalMin(value = "2013", message = "Verifique o ano do campeonato.")
+	private int ano;
 	
 	private String descricao;
 	
 	@OneToMany(mappedBy="campeonato")
+	@Valid
 	private Set<Jogo> jogos = new HashSet<Jogo>();
 
 	public Integer getCampeonato() {
@@ -73,6 +78,7 @@ public class Campeonato implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ano;
 		result = prime * result
 				+ ((campeonato == null) ? 0 : campeonato.hashCode());
 		result = prime * result
@@ -91,6 +97,8 @@ public class Campeonato implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Campeonato other = (Campeonato) obj;
+		if (ano != other.ano)
+			return false;
 		if (campeonato == null) {
 			if (other.campeonato != null)
 				return false;
@@ -112,5 +120,17 @@ public class Campeonato implements Serializable{
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

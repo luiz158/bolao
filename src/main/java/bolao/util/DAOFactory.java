@@ -1,10 +1,12 @@
 package bolao.util;
 
 import bolao.dao.BolaoDao;
+import bolao.dao.CampeonatoDao;
 import bolao.dao.ClubeDao;
 import bolao.dao.JogoDao;
 import bolao.dao.UsuarioDao;
 import bolao.dao.impl.BolaoDaoHibernate;
+import bolao.dao.impl.CampeonatoDaoHibernate;
 import bolao.dao.impl.ClubeDaoHibernate;
 import bolao.dao.impl.JogoDaoHibernate;
 import bolao.dao.impl.UsuarioDaoHibernate;
@@ -12,22 +14,22 @@ import bolao.dao.impl.UsuarioDaoHibernate;
 public class DAOFactory {
 	
 	public static UsuarioDao criarUsuarioDAO(){
-		UsuarioDaoHibernate usuarioDAO = new UsuarioDaoHibernate();
-		return usuarioDAO;
+		return new UsuarioDaoHibernate();
 	}
 	
 	public static BolaoDao criarBolaoDAO(){
-		BolaoDaoHibernate bolaoDAO = new BolaoDaoHibernate();
-		return bolaoDAO;
+		return new BolaoDaoHibernate();
 	}
 	
 	public static ClubeDao criarClubeDAO(){
-		ClubeDaoHibernate clubeDAO = new ClubeDaoHibernate();
-		return clubeDAO;
+		return new ClubeDaoHibernate();
 	}
 
 	public static JogoDao criarJogoDAO() {
-		JogoDaoHibernate jogoDAO = new JogoDaoHibernate();
-		return jogoDAO;
+		return new JogoDaoHibernate();
+	}
+
+	public static CampeonatoDao criarCampeonatoDAO() {
+		return new CampeonatoDaoHibernate();
 	}
 }
