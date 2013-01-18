@@ -100,7 +100,7 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
 	}
    
    @SuppressWarnings("unchecked")
-   public List<T> listar() throws DAOException {
+   public List<T> listar(){
 	   List<T> entities = null;
 	   
 	   try{
@@ -111,7 +111,6 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
 	   } catch(HibernateException e){
 		   if(this.transacao.isActive())
 			   this.transacao.rollback();
-		   throw new DAOException("Não foi possível listar: " + this.entityClass.getClass().getName() + " ERRO: " + e.getMessage());
 	   }finally{
 		   try{
 			   if(this.session.isOpen()){
@@ -125,7 +124,7 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
    }
 
    @SuppressWarnings("unchecked")
-   public T carregar(ID codigo) throws DAOException {
+   public T carregar(ID codigo){
 	   T t = null;
 	   
 	   try{
@@ -136,7 +135,6 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
 	   } catch(HibernateException e){
 		   if(this.transacao.isActive())
 			   this.transacao.rollback();
-		   throw new DAOException("Não foi possível carregar: " + this.entityClass.getClass().getName() + " ERRO: " + e.getMessage());
 	   }finally{
 		   try{
 			   if(this.session.isOpen()){

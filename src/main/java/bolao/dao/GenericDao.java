@@ -9,6 +9,6 @@ public interface GenericDao<T, ID extends Serializable> {
     public void adicionar(T entity) throws DAOException;
     public void atualizar(T entity) throws DAOException;
     public void excluir(T entity) throws DAOException;
-    public List<T> listar() throws DAOException;
-    public T carregar(ID codigo) throws DAOException;
+    public List<T> listar();
+    public T carregar(ID codigo);
 }

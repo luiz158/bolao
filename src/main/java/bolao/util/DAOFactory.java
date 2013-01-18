@@ -2,9 +2,11 @@ package bolao.util;
 
 import bolao.dao.BolaoDao;
 import bolao.dao.ClubeDao;
+import bolao.dao.JogoDao;
 import bolao.dao.UsuarioDao;
 import bolao.dao.impl.BolaoDaoHibernate;
 import bolao.dao.impl.ClubeDaoHibernate;
+import bolao.dao.impl.JogoDaoHibernate;
 import bolao.dao.impl.UsuarioDaoHibernate;
 
 public class DAOFactory {
@@ -22,5 +24,10 @@ public class DAOFactory {
 	public static ClubeDao criarClubeDAO(){
 		ClubeDaoHibernate clubeDAO = new ClubeDaoHibernate();
 		return clubeDAO;
+	}
+
+	public static JogoDao criarJogoDAO() {
+		JogoDaoHibernate jogoDAO = new JogoDaoHibernate();
+		return jogoDAO;
 	}
 }

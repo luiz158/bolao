@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -25,17 +27,26 @@ public class Jogo implements Serializable{
 	private Integer jogo;
 	
 	@OneToOne
+	@Column(name = "cod_clube_casa", nullable = false)
+	@NotNull(message = "O clube que joga em casa deve ser preenchido.")
 	private Clube clubeCasa;
 	
 	@OneToOne
+	@Column(name = "cod_clube_visitante", nullable = false)
+	@NotNull(message = "O clube visitante deve ser preenchido.")
 	private Clube clubeVisitante;
 	
 	private Integer placarCasa;
 	private Integer placarVisitante;
+	
+	@Column(nullable = false)
+	@NotNull(message = "O número da rodada deve ser informado.")
+	@DecimalMin(value = "1", message = "Valor inválido para rodada, valor mínimo é 1")	
 	private Integer numeroRodada;
 	
 	@ManyToOne
-	@JoinColumn(name="cod_campeonato")
+	@JoinColumn(name="cod_campeonato", nullable = false)
+	@NotNull(message = "Um jogo precisa ser associado a um campeonato.")
 	private Campeonato campeonato;
 
 	public Integer getJogo() {

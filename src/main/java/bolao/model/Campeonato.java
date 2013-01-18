@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -24,7 +25,13 @@ public class Campeonato implements Serializable{
 	@Column(name="cod_campeonato")
 	private Integer campeonato;
 	
+	@Column(nullable = false, unique = true)
+	@NotNull(message = "O nome do campeonato deve ser preenhido")
 	private String nome;
+	
+	
+	private Integer ano;
+	
 	private String descricao;
 	
 	@OneToMany(mappedBy="campeonato")
