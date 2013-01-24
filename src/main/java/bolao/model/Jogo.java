@@ -14,10 +14,12 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.sun.xml.bind.CycleRecoverable;
+
 @Entity
 @XmlRootElement
 @Table(name="jogo")
-public class Jogo implements Serializable{
+public class Jogo implements Serializable, CycleRecoverable{
 	
 	private static final long serialVersionUID = -1796023317406016L;
 
@@ -27,12 +29,12 @@ public class Jogo implements Serializable{
 	private Integer jogo;
 	
 	@OneToOne
-	@Column(name = "cod_clube_casa", nullable = false)
+	@JoinColumn(name = "cod_clube_casa", nullable = false)
 	@NotNull(message = "O clube que joga em casa deve ser preenchido.")
 	private Clube clubeCasa;
 	
 	@OneToOne
-	@Column(name = "cod_clube_visitante", nullable = false)
+	@JoinColumn(name = "cod_clube_visitante", nullable = false)
 	@NotNull(message = "O clube visitante deve ser preenchido.")
 	private Clube clubeVisitante;
 	
@@ -174,5 +176,13 @@ public class Jogo implements Serializable{
 		} else if (!placarVisitante.equals(other.placarVisitante))
 			return false;
 		return true;
+	}
+
+	@Override
+	//Para resolver problema de referencia ciclica
+	public Object onCycleDetected(Context ctx) {
+		Jogo jogo = new Jogo();
+		jogo.setJogo(this.jogo);
+		return jogo;
 	}
 }

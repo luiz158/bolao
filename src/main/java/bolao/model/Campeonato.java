@@ -1,11 +1,12 @@
 package bolao.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,10 +16,12 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.sun.xml.bind.CycleRecoverable;
+
 @Entity
 @XmlRootElement
 @Table(name="campeonato")
-public class Campeonato implements Serializable{
+public class Campeonato implements Serializable, CycleRecoverable{
 	
 	private static final long serialVersionUID = -3526070421021388499L;
 
@@ -38,9 +41,9 @@ public class Campeonato implements Serializable{
 	
 	private String descricao;
 	
-	@OneToMany(mappedBy="campeonato")
+	@OneToMany(mappedBy="campeonato", fetch = FetchType.EAGER)
 	@Valid
-	private Set<Jogo> jogos = new HashSet<Jogo>();
+	private List<Jogo> jogos = new ArrayList<Jogo>();
 
 	public Integer getCampeonato() {
 		return campeonato;
@@ -66,11 +69,11 @@ public class Campeonato implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Set<Jogo> getJogos() {
+	public List<Jogo> getJogos() {
 		return jogos;
 	}
 
-	public void setJogos(Set<Jogo> jogos) {
+	public void setJogos(List<Jogo> jogos) {
 		this.jogos = jogos;
 	}
 
@@ -132,5 +135,12 @@ public class Campeonato implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public Object onCycleDetected(Context arg0) {
+		Campeonato c = new Campeonato();
+		c.setCampeonato(this.campeonato);
+		return c;
 	}
 }
