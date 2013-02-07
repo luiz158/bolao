@@ -4,6 +4,7 @@ import java.util.List;
 
 import bolao.dao.UsuarioDao;
 import bolao.model.Usuario;
+import bolao.util.DAOException;
 import bolao.util.DAOFactory;
 
 public class UsuarioController {
@@ -28,11 +29,21 @@ public class UsuarioController {
 	}
 	
 	public void atualizar(Usuario usuario){
-		this.usuarioDAO.atualizar(usuario);
+		try {
+			this.usuarioDAO.atualizar(usuario);
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void excluir(Usuario usuario){
-		this.usuarioDAO.excluir(usuario);
+		try {
+			this.usuarioDAO.excluir(usuario);
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Usuario> listar(){

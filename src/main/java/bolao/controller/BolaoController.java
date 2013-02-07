@@ -4,6 +4,7 @@ import java.util.List;
 
 import bolao.dao.BolaoDao;
 import bolao.model.Bolao;
+import bolao.util.DAOException;
 import bolao.util.DAOFactory;
 
 public class BolaoController{
@@ -19,11 +20,21 @@ public class BolaoController{
 	}
 
 	public void atualizar(Bolao bolao) {
-		this.bolaoDao.atualizar(bolao);
+		try {
+			this.bolaoDao.atualizar(bolao);
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void excluir(Bolao bolao) {
-		this.bolaoDao.excluir(bolao);		
+		try {
+			this.bolaoDao.excluir(bolao);
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 
 	public List<Bolao> listar() {
