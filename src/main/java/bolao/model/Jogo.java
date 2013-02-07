@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -177,7 +178,7 @@ public class Jogo implements Serializable, CycleRecoverable{
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	//Para resolver problema de referencia ciclica
 	public Object onCycleDetected(Context ctx) {

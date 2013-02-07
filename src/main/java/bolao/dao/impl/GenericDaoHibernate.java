@@ -3,6 +3,10 @@ package bolao.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.criteria.Fetch;
+
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -106,7 +110,10 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
 	   try{
 		   this.session = HibernateUtil.getSessionFactory().getCurrentSession();
 		   this.transacao = this.session.beginTransaction();
-		   entities = this.getSession().createCriteria(this.getEntityClass()).list();
+		   Criteria criteria = this.getSession().createCriteria(this.getEntityClass());
+		   criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		   entities = criteria.list();
+		   
 		   this.transacao.commit();
 	   } catch(HibernateException e){
 		   if(this.transacao.isActive())

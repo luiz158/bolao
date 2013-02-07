@@ -66,16 +66,20 @@ public class CampeonatoControllerTest {
 			System.out.println(camp.getCampeonato() + " " + camp.getNome() + " " + camp.getAno());
 			System.out.println("    JOGOS");
 			for(Jogo j : camp.getJogos()){
-				System.out.println("       " + j.getClubeCasa().getNome() + " x " + j.getClubeVisitante().getNome());
+				System.out.println("       " + j.getCampeonato().getNome() + "-" + j.getCampeonato().getAno() + ": " + j.getClubeCasa().getNome() + " x " + j.getClubeVisitante().getNome());
 			}
 		}
 	}
 	
-	/*
+	@Ignore
 	@Test
 	public void testCarregar() {
-		fail("Not yet implemented");
+		this.c = cc.carregar(32);
+		
+		System.out.println(c.getCampeonato() + " " + c.getNome() + " " + c.getAno());
+		System.out.println("    JOGOS");
+		for(Jogo j : c.getJogos()){
+			System.out.println("       " + j.getCampeonato().getNome() + "-" + j.getCampeonato().getAno() + ": " + j.getClubeCasa().getNome() + " x " + j.getClubeVisitante().getNome());
+		}
 	} 
-
-	*/
 }
