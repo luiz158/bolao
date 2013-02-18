@@ -1,10 +1,12 @@
 package bolao.util;
 
+import bolao.dao.ApostaDao;
 import bolao.dao.BolaoDao;
 import bolao.dao.CampeonatoDao;
 import bolao.dao.ClubeDao;
 import bolao.dao.JogoDao;
 import bolao.dao.UsuarioDao;
+import bolao.dao.impl.ApostaDaoHibernate;
 import bolao.dao.impl.BolaoDaoHibernate;
 import bolao.dao.impl.CampeonatoDaoHibernate;
 import bolao.dao.impl.ClubeDaoHibernate;
@@ -31,5 +33,9 @@ public class DAOFactory {
 
 	public static CampeonatoDao criarCampeonatoDAO() {
 		return new CampeonatoDaoHibernate();
+	}
+	
+	public static ApostaDao criarApostaDAO() {
+		return new ApostaDaoHibernate();
 	}
 }

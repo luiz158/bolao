@@ -3,7 +3,9 @@ package bolao.controller;
 import java.util.List;
 
 import bolao.dao.JogoDao;
+import bolao.model.Aposta;
 import bolao.model.Jogo;
+import bolao.util.DAOException;
 import bolao.util.DAOFactory;
 import bolao.util.ValidatorMessage;
 
@@ -66,5 +68,23 @@ public class JogoController {
 
 	public Jogo carregar(Integer codigo) {
 		return this.jogoDao.carregar(codigo);
+	}
+	
+	public void atualizaPlacarJogo(int codigo, int placarCasa, int placarVisitante){
+		Jogo jogo = jogoDao.carregar(codigo);
+		
+		jogo.setPlacarCasa(placarCasa);
+		jogo.setPlacarVisitante(placarVisitante);
+		
+		
+		for(Aposta aposta : jogo.getApostas()){
+			aposta.atualizarPontuacao();
+		}
+		
+		try {
+			jogoDao.atualizar(jogo);
+		} catch (DAOException e) {
+			System.out.println("ERROR: " + e.getMessage());
+		}
 	}
 }

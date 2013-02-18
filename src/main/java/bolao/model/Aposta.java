@@ -27,8 +27,8 @@ public class Aposta implements Serializable{
 	@Column(name="cod_aposta")
 	private Integer aposta;
 	
-	@OneToOne
-	@JoinColumn(name="cod_jogo")
+	@ManyToOne
+	@JoinColumn(name="cod_jogo", nullable = false)
 	private Jogo jogo;
 	
 	private Integer placarCasa;
@@ -42,6 +42,8 @@ public class Aposta implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="cod_bolao")
 	private Bolao bolao;
+	
+	private Integer pontuacao;
 
 	public Integer getAposta() {
 		return aposta;
@@ -150,5 +152,42 @@ public class Aposta implements Serializable{
 
 	public void setBolao(Bolao bolao) {
 		this.bolao = bolao;
+	}
+
+	public Integer getPontuacao() {
+		return pontuacao;
+	}
+
+	public void atualizarPontuacao() {
+		//variaveis que armazena placar do time de casa e visitante 
+		Integer pc = this.jogo.getPlacarCasa();
+		Integer pv = this.jogo.getPlacarVisitante();
+		
+		//variaveis que armazena apostas do time de casa e visitante 
+		Integer ac = this.placarCasa;
+		Integer av = this.placarVisitante;
+		
+		//logica da pontuacao
+		if( (pc == null) || (pv == null)){
+			this.pontuacao = 0;
+		}else if ((ac>av && pc<pv) || (ac<av && pc>pv) || (ac==av && pc!=pv) || (ac!=av && pc==pv)) {
+			//Se não houver acerto de nada
+			this.pontuacao = 0;
+		}else if ((ac>av && pc>pv && ac!=pc && av!=pv) || (ac<av && pc<pv && ac!=pc && av!=pv)) {
+			//Se acertar o ganhador do jogo
+			this.pontuacao = 2;
+		}else if ((ac>av && pc>pv && ac!=pc && av==pv) || (ac<av && pc<pv && ac==pc && av!=pv)) {
+			//Se acertar o placar do perdedor do jogo
+			this.pontuacao = 4;
+		}else if ((ac>av && pc>pv && ac==pc && av!=pv) || (ac<av && pc<pv && ac!=pc && av==pv)) {
+			//Se acertar o placar o vencedor do jogo
+			this.pontuacao = 6;
+		}else if (ac==pc && av==pv) {
+			//Se acertar o placar do jogo
+			this.pontuacao = 10;
+		}else if (ac==av && pc==pv && ac!=pc) {
+			//Se acertar que o jogo eh empate, mas com placar diferente
+			this.pontuacao = 5;
+		}
 	}
 }
