@@ -16,6 +16,8 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.IndexColumn;
+
 import com.sun.xml.bind.CycleRecoverable;
 
 @Entity
@@ -42,6 +44,7 @@ public class Campeonato implements Serializable, CycleRecoverable{
 	private String descricao;
 	
 	@OneToMany(mappedBy="campeonato", fetch = FetchType.EAGER)
+	@IndexColumn(name="cod_jogo")
 	@Valid
 	private List<Jogo> jogos = new ArrayList<Jogo>();
 

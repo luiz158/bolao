@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @XmlRootElement
 @Table(name="clube")
@@ -24,6 +26,7 @@ public class Clube implements Serializable{
 	
 	@Column(nullable = false, unique= true)
 	@NotNull(message="O nome do clube deve ser preenchido.")
+	@NotEmpty(message="O nome do clube não pode ser vazio.")
 	private String nome;
 	
 	private String escudo;

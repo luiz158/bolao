@@ -23,7 +23,7 @@ public class ClubeController {
 				msg = "Sucesso";
 			}catch(Exception e){
 				System.out.println("ERROR: " + e.getMessage());
-				msg = "Erro";
+				msg = "Erro: " + e.getMessage();
 			}
 		}
 		return msg;
@@ -38,7 +38,7 @@ public class ClubeController {
 				msg = "Sucesso";
 			}catch(Exception e){
 				System.out.println("ERROR: " + e.getMessage());
-				msg = "Erro";
+				msg = "Erro: " + e.getMessage();
 			}
 		}
 		return msg;
@@ -55,7 +55,7 @@ public class ClubeController {
 			}
 		}catch(Exception e){
 			System.out.println("ERROR: " + e.getMessage());
-			msg = "Erro";
+			msg = "Erro: " + e.getMessage();
 		}
 		return msg;
 	}

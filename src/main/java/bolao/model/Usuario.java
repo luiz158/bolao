@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.NaturalId;
 
 import com.sun.xml.bind.CycleRecoverable;
@@ -47,7 +49,7 @@ public class Usuario implements Serializable, CycleRecoverable{
 	@Column(name = "permissao", length=50)
 	private Set<String> permissao = new HashSet<String>();
 	
-	@ManyToMany(mappedBy="apostadores")
+	@ManyToMany(mappedBy="apostadores", fetch=FetchType.EAGER)
 	private List<Bolao> boloes;
 
 	public Integer getUsuario() {
