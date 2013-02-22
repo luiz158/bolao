@@ -40,7 +40,7 @@ public class Aposta implements Serializable{
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name="cod_bolao")
+	@JoinColumn(name="cod_bolao", nullable= false)
 	private Bolao bolao;
 	
 	private Integer pontuacao;

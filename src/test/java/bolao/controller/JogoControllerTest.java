@@ -25,25 +25,13 @@ public class JogoControllerTest {
 		CampeonatoController cc = new CampeonatoController();
 		ClubeController clc = new ClubeController();
 		
-		jogo.setCampeonato(cc.carregar(32));
-		jogo.setClubeCasa(clc.carregar(13));
-		jogo.setClubeVisitante(clc.carregar(31));
+		jogo.setCampeonato(cc.carregar(7));
+		jogo.setClubeCasa(clc.carregar(1));
+		jogo.setClubeVisitante(clc.carregar(2));
 		jogo.setNumeroRodada(1);
 		
 		jogoController.adicionar(jogo);
 	}
-	
-	/*
-	@Test
-	public void testAtualizar() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testExcluir() {
-		fail("Not yet implemented");
-	}
-	*/
 	
 	@Test
 	public void testListar() {
@@ -51,11 +39,4 @@ public class JogoControllerTest {
 			System.out.println(j.getCampeonato().getNome() + "-" + j.getCampeonato().getAno() + ": " + j.getClubeCasa().getNome() + " x " + j.getClubeVisitante().getNome());
 		}
 	}
-
-	/*
-	@Test
-	public void testCarregar() {
-		fail("Not yet implemented");
-	}*/
-
 }

@@ -1,7 +1,5 @@
 package bolao.controller;
 
-import static org.junit.Assert.*;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,20 +15,15 @@ public class ClubeControllerTest {
 	}
 
 	@Test
-	public void testAdicionarTudoNull() {
-		Clube clube = new Clube();
+	public void testAdicionar() {
+		String clubes[] = {"Campinense", "Treze", "CSP"};
 		
-		assertNotEquals("Erro", cc.adicionar(clube));		
-	}
-
-	@Test
-	public void testAtualizar() {
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	public void testExcluir() {
-		//fail("Not yet implemented");
+		for(int i = 0; i < clubes.length; i++){
+			Clube clube = new Clube();
+			
+			clube.setNome(clubes[i]);
+			cc.adicionar(clube);
+		}
 	}
 
 	@Test
@@ -38,10 +31,5 @@ public class ClubeControllerTest {
 		for(Clube cl : cc.listar()){
 			System.out.println(cl.getClube() + " " + cl.getNome());
 		}
-	}
-
-	@Test
-	public void testCarregar() {
-		//fail("Not yet implemented");
 	}
 }
