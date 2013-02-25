@@ -9,6 +9,7 @@ import org.junit.Test;
 import bolao.model.Campeonato;
 import bolao.model.Jogo;
 
+@Ignore
 public class CampeonatoControllerTest {
 	
 	private Campeonato c;

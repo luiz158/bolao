@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import bolao.model.Jogo;
 
+@Ignore
 public class JogoControllerTest {
 	
 	private Jogo jogo;

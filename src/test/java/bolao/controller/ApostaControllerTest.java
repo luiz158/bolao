@@ -3,10 +3,12 @@ package bolao.controller;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import bolao.model.Aposta;
 
+@Ignore
 public class ApostaControllerTest {
 
 	private Aposta aposta;

@@ -1,10 +1,12 @@
 package bolao.controller;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import bolao.model.Clube;
 
+@Ignore
 public class ClubeControllerTest {
 	
 	private static ClubeController cc;
