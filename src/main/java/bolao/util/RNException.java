@@ -2,6 +2,11 @@ package bolao.util;
 
 public class RNException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public RNException() {
 		// TODO Auto-generated constructor stub
 	}
