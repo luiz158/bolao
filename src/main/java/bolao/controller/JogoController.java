@@ -37,6 +37,11 @@ public class JogoController {
 		if(msg == null){
 			try{
 				this.jogoDao.atualizar(jogo);
+				
+				if((jogo.getPlacarCasa() != null) && (jogo.getPlacarVisitante() != null)){
+					this.atualizaPlacarJogo(jogo.getJogo(), jogo.getPlacarCasa(), jogo.getPlacarVisitante());
+				}
+				
 				msg = "Sucesso";
 			}catch(Exception e){
 				System.out.println("ERROR: " + e.getMessage());

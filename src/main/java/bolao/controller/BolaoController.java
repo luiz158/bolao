@@ -4,8 +4,10 @@ import java.util.List;
 
 import bolao.dao.BolaoDao;
 import bolao.model.Bolao;
-import bolao.util.DAOException;
+import bolao.model.Usuario;
 import bolao.util.DAOFactory;
+import bolao.util.RNException;
+import bolao.util.ValidatorMessage;
 
 public class BolaoController{
 	
@@ -15,26 +17,50 @@ public class BolaoController{
 		this.bolaoDao = DAOFactory.criarBolaoDAO();
 	}
 
-	public void adicionar(Bolao bolao) {
-		//this.bolaoDao.adicionar(bolao);
-	}
-
-	public void atualizar(Bolao bolao) {
-		try {
-			this.bolaoDao.atualizar(bolao);
-		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public String adicionar(Bolao bolao) {
+		String msg = ValidatorMessage.getMessage(bolao);
+		
+		if(msg == null){
+			try{
+				this.bolaoDao.adicionar(bolao);
+				msg = "Sucesso";
+			}catch(Exception e){
+				System.out.println("ERROR: " + e.getMessage());
+				msg = "Erro: " + e.getMessage();
+			}
 		}
+		return msg;
 	}
 
-	public void excluir(Bolao bolao) {
-		try {
-			this.bolaoDao.excluir(bolao);
-		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+	public String atualizar(Bolao bolao) {
+		String msg = ValidatorMessage.getMessage(bolao);
+		
+		if(msg == null){
+			try{
+				this.bolaoDao.atualizar(bolao);
+				msg = "Sucesso";
+			}catch(Exception e){
+				System.out.println("ERROR: " + e.getMessage());
+				msg = "Erro: " + e.getMessage();
+			}
+		}
+		return msg;
+	}
+
+	public String excluir(Bolao bolao) {
+		String msg = null;
+		try{			
+			if(bolao.getBolao() != null){
+				this.bolaoDao.excluir(bolao);
+				msg = "Sucesso";
+			}else{
+				msg = "Erro";
+			}
+		}catch(Exception e){
+			System.out.println("ERROR: " + e.getMessage());
+			msg = "Erro: " + e.getMessage();
+		}
+		return msg;
 	}
 
 	public List<Bolao> listar() {
@@ -43,5 +69,15 @@ public class BolaoController{
 
 	public Bolao carregar(Integer codigo) {
 		return this.bolaoDao.carregar(codigo);
+	}
+	
+	public String adicionarApostador(Bolao bolao, Usuario usuario) throws RNException{
+		UsuarioController usuarioController = new UsuarioController();
+		
+		if(usuarioController.carregar(usuario.getUsuario()) == null){
+			throw new RNException("Usuario não existente");
+		}
+		bolao.getApostadores().add(usuario);
+		return "Sucesso";
 	}
 }

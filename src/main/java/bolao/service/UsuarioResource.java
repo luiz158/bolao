@@ -25,6 +25,14 @@ public class UsuarioResource {
 		return usuarioController.listar();
 	}
 	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String adicionarUsuario(Usuario usuario){
+		UsuarioController usuarioController = new UsuarioController();
+		return usuarioController.adicionar(usuario);
+	}
+	
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -33,44 +41,19 @@ public class UsuarioResource {
 		return usuarioController.carregar(id);
 	}
 	
-	@POST
+	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String adicionaUsuario(Usuario usuario){
-		usuario.setUsuario(null);
+	public String excluirUsuario(Usuario usuario){
 		UsuarioController usuarioController = new UsuarioController();
-		usuarioController.adcionar(usuario);
-		return "Adicionado";
+		return usuarioController.excluir(usuario);
 	}
 	
 	@PUT
-	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String atualizaUsuario(Usuario usuario, @PathParam("id") int id){
-		
+	public String atualizaUsuario(Usuario usuario){
 		UsuarioController usuarioController = new UsuarioController();
-		Usuario usuarioAtual = usuarioController.carregar(id);
-		usuarioAtual.setAtivo(usuario.isAtivo());
-		usuarioAtual.setEmail(usuario.getEmail());
-		usuarioAtual.setLogin(usuario.getLogin());
-		usuarioAtual.setNome(usuario.getNome());
-		usuarioAtual.setPermissao(usuario.getPermissao());
-		usuarioAtual.setSenha(usuario.getSenha());
-		
-		usuarioController.atualizar(usuarioAtual);
-		
-		return "Usuario atualizado";
-	}
-	
-	@DELETE
-	@Path("{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public String removeUsuario(@PathParam("id") int id){
-		UsuarioController usuarioController = new UsuarioController();
-		Usuario usuario = usuarioController.carregar(id);
-		usuarioController.excluir(usuario);
-		return "Usuario " + usuario.getNome() + "removido!";
+		return usuarioController.atualizar(usuario);
 	}
 }

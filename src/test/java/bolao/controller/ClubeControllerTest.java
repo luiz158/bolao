@@ -1,12 +1,10 @@
 package bolao.controller;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import bolao.model.Clube;
 
-@Ignore
 public class ClubeControllerTest {
 	
 	private static ClubeController cc;
@@ -14,18 +12,6 @@ public class ClubeControllerTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		cc = new ClubeController();
-	}
-
-	@Test
-	public void testAdicionar() {
-		String clubes[] = {"Campinense", "Treze", "CSP"};
-		
-		for(int i = 0; i < clubes.length; i++){
-			Clube clube = new Clube();
-			
-			clube.setNome(clubes[i]);
-			cc.adicionar(clube);
-		}
 	}
 
 	@Test

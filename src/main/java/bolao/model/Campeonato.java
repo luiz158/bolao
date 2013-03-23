@@ -2,9 +2,7 @@ package bolao.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +16,8 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.sun.xml.bind.CycleRecoverable;
 
@@ -35,7 +34,7 @@ public class Campeonato implements Serializable, CycleRecoverable{
 	private Integer campeonato;
 	
 	@Column(nullable = false, unique = true)
-	@NotNull(message = "O nome do campeonato deve ser preenhido")
+	@NotNull(message = "O nome do campeonato deve ser preenchido")
 	private String nome;
 	
 	@Column(nullable = false)
@@ -46,8 +45,8 @@ public class Campeonato implements Serializable, CycleRecoverable{
 	private String descricao;
 	
 	@OneToMany(mappedBy="campeonato", fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	@Valid
-	@IndexColumn(name="cod_jogo")
 	private List<Jogo> jogos = new ArrayList<Jogo>();
 
 	public Integer getCampeonato() {

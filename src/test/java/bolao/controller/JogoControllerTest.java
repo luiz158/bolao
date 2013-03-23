@@ -1,14 +1,11 @@
 package bolao.controller;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import bolao.model.Jogo;
 
-@Ignore
 public class JogoControllerTest {
 	
 	private Jogo jogo;
@@ -20,14 +17,14 @@ public class JogoControllerTest {
 		this.jogoController = new JogoController();
 	}
 
-	@Ignore
+	
 	@Test
 	public void testAdicionar() {
 		CampeonatoController cc = new CampeonatoController();
 		ClubeController clc = new ClubeController();
 		
 		jogo.setCampeonato(cc.carregar(7));
-		jogo.setClubeCasa(clc.carregar(1));
+		jogo.setClubeCasa(clc.carregar(3));
 		jogo.setClubeVisitante(clc.carregar(2));
 		jogo.setNumeroRodada(1);
 		
@@ -37,7 +34,7 @@ public class JogoControllerTest {
 	@Test
 	public void testListar() {
 		for(Jogo j : jogoController.listar()){
-			System.out.println(j.getCampeonato().getNome() + "-" + j.getCampeonato().getAno() + ": " + j.getClubeCasa().getNome() + " x " + j.getClubeVisitante().getNome());
+			System.out.println(j.getCampeonato().getCampeonato() + " " + j.getCampeonato().getNome() + "-" + j.getCampeonato().getAno() + ": " + j.getClubeCasa().getNome() + " x " + j.getClubeVisitante().getNome());
 		}
 	}
 }

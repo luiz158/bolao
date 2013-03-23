@@ -4,8 +4,8 @@ import java.util.List;
 
 import bolao.dao.UsuarioDao;
 import bolao.model.Usuario;
-import bolao.util.DAOException;
 import bolao.util.DAOFactory;
+import bolao.util.ValidatorMessage;
 
 public class UsuarioController {
 	
@@ -22,28 +22,52 @@ public class UsuarioController {
 	public Usuario buscarPorLogin(String login){
 		return this.usuarioDAO.buscarPorLogin(login);
 	}
-	
-	public void adcionar(Usuario usuario){
+		
+	public String adicionar(Usuario usuario) {
 		usuario.getPermissao().add("ROLE_USUARIO");
-		//this.usuarioDAO.adicionar(usuario);
-	}
-	
-	public void atualizar(Usuario usuario){
-		try {
-			this.usuarioDAO.atualizar(usuario);
-		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String msg = ValidatorMessage.getMessage(usuario);
+		
+		if(msg == null){
+			try{
+				this.usuarioDAO.adicionar(usuario);
+				msg = "Sucesso";
+			}catch(Exception e){
+				System.out.println("ERROR: " + e.getMessage());
+				msg = "Erro: " + e.getMessage();
+			}
 		}
+		return msg;
 	}
-	
-	public void excluir(Usuario usuario){
-		try {
-			this.usuarioDAO.excluir(usuario);
-		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+	public String atualizar(Usuario usuario) {
+		String msg = ValidatorMessage.getMessage(usuario);
+		
+		if(msg == null){
+			try{
+				this.usuarioDAO.atualizar(usuario);
+				msg = "Sucesso";
+			}catch(Exception e){
+				System.out.println("ERROR: " + e.getMessage());
+				msg = "Erro: " + e.getMessage();
+			}
 		}
+		return msg;
+	}
+
+	public String excluir(Usuario usuario) {
+		String msg = null;
+		try{			
+			if(usuario.getUsuario() != null){
+				this.usuarioDAO.excluir(usuario);
+				msg = "Sucesso";
+			}else{
+				msg = "Erro";
+			}
+		}catch(Exception e){
+			System.out.println("ERROR: " + e.getMessage());
+			msg = "Erro: " + e.getMessage();
+		}
+		return msg;
 	}
 	
 	public List<Usuario> listar(){

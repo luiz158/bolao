@@ -18,8 +18,8 @@ import bolao.util.DAOException;
 
 public abstract class GenericDaoHibernate<T, ID extends Serializable> implements GenericDao<T, ID>{
 
-   private Session session;
-   private Transaction transacao;
+   protected Session session;
+   protected Transaction transacao;
    private Class<T> entityClass;
    
    public GenericDaoHibernate(Class<T> entityClass){

@@ -29,7 +29,7 @@ public class ConexaoFilter implements Filter{
 	        response.addHeader("Access-Control-Allow-Credentials", "true");
 	    }
 
-	    chain.doFilter(req, resp);	
+	    chain.doFilter(req, resp);
 	}
 
 	@Override

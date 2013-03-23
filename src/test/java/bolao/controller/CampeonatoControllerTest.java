@@ -9,7 +9,6 @@ import org.junit.Test;
 import bolao.model.Campeonato;
 import bolao.model.Jogo;
 
-@Ignore
 public class CampeonatoControllerTest {
 	
 	private Campeonato c;
@@ -21,6 +20,7 @@ public class CampeonatoControllerTest {
 		this.cc = new CampeonatoController();
 	}
 	
+	@Ignore
 	@Test
 	public void testAdicionar() {
 		c.setAno(2013);
